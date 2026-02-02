@@ -18,10 +18,18 @@
             <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- ReportPortal Dependencies -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>5.2.2</version>
+            <version>5.1.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-logback</artifactId>
+            <version>5.1.5</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <properties>
