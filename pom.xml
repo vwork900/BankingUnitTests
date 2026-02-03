@@ -21,7 +21,7 @@
 
         <!-- Versions -->
         <junit.version>5.10.1</junit.version>
-        <rp.version>5.1.4</rp.version>
+        <rp.version>5.2.2</rp.version>
         <logback.version>1.4.11</logback.version>
     </properties>
 
@@ -30,7 +30,7 @@
     <!-- ===================== -->
     <dependencies>
 
-        <!-- JUnit 5 (All-in-one) -->
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
-            <version>5.1.5</version>
+            <version>${rp.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -89,13 +89,21 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire (JUnit 5) -->
+            <!-- Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
+
+                    <!-- ReportPortal Listener -->
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>com.epam.reportportal.junit5.ReportPortalExtension</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
 
