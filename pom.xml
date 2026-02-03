@@ -1,79 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>vs</groupId>
     <artifactId>BankingUnitTests</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
+
+    <!-- ===================== -->
+    <!-- Properties -->
+    <!-- ===================== -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Versions -->
+        <junit.version>5.10.1</junit.version>
+        <rp.version>5.1.4</rp.version>
+        <logback.version>1.4.11</logback.version>
     </properties>
-    
+
+    <!-- ===================== -->
+    <!-- Dependencies -->
+    <!-- ===================== -->
     <dependencies>
-        <!-- JUnit 5 -->
+
+        <!-- JUnit 5 (All-in-one) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.1</version>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.1</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <!-- ReportPortal Agent for JUnit 5 -->
+
+        <!-- ReportPortal JUnit5 Agent -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-junit5</artifactId>
-            <version>5.1.4</version>
+            <version>${rp.version}</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- ReportPortal Logging -->
+
+        <!-- ReportPortal Client -->
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>client-java</artifactId>
+            <version>${rp.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ReportPortal Logback Logger -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
             <version>5.1.5</version>
             <scope>test</scope>
         </dependency>
-          <!-- Logback for logging -->
+
+        <!-- Logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.11</version>
+            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
-    
+
+    <!-- ===================== -->
+    <!-- Build -->
+    <!-- ===================== -->
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin -->
+
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-            
-            <!-- Maven Surefire Plugin -->
+
+            <!-- Surefire (JUnit 5) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
             </plugin>
+
         </plugins>
     </build>
+
 </project>
