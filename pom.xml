@@ -28,9 +28,10 @@
     <repository>
         <id>reportportal</id>
         <name>ReportPortal Repository</name>
-        <url>https://github.com/reportportal/reportportal/</url>
+        <url>https://repo.reportportal.com/api/maven/releases</url>
     </repository>
 </repositories>
+  
 
     <!-- ===================== -->
     <!-- Dependencies -->
