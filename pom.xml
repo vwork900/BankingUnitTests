@@ -24,13 +24,14 @@
         <rp.version>5.2.2</rp.version>
         <logback.version>1.4.11</logback.version>
     </properties>
-         <repositories>
-        <repository>
-            <id>reportportal</id>
-            <name>ReportPortal Repository</name>
-            <url>https://repo.reportportal.io/</url>
-        </repository>
-    </repositories>
+       <repositories>
+    <repository>
+        <id>reportportal</id>
+        <name>ReportPortal Repository</name>
+        <url>https://github.com/reportportal/reportportal/</url>
+    </repository>
+</repositories>
+
     <!-- ===================== -->
     <!-- Dependencies -->
     <!-- ===================== -->
