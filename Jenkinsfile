@@ -25,7 +25,7 @@ pipeline {
     }
     
     environment {
-        RP_UUID = credentials('reportportal-uuid')
+        RP_API_KEY = credentials('reportportal-uuid')
         LAUNCH_NAME = "${params.LAUNCH_NAME ?: env.JOB_NAME}_Build_${env.BUILD_NUMBER}"
     }
     
@@ -61,16 +61,19 @@ pipeline {
                 echo "Running unit tests..."
                 echo "ReportPortal Project: ${params.RP_PROJECT}"
                 echo "Launch Name: ${env.LAUNCH_NAME}"
-                bat """
-                    mvn test ^
-                    -Drp.endpoint=${params.RP_ENDPOINT} ^
-                    -Drp.uuid=${env.RP_UUID} ^
-                    -Drp.project=${params.RP_PROJECT} ^
-                    -Drp.launch=${env.LAUNCH_NAME} ^
-                    -Drp.attributes=build:${env.BUILD_NUMBER};branch:${params.BRANCH};job:${env.JOB_NAME}
-                """
+                bat 'mvn test -Drp.endpoint=%RP_ENDPOINT%/api/v2 -Drp.api.key=%RP_API_KEY% -Drp.project=%RP_PROJECT% -Drp.launch=%LAUNCH_NAME% -Drp.attributes=build:%BUILD_NUMBER%;branch:%BRANCH%;job:%JOB_NAME%'
+                // bat """
+                //     mvn test ^
+                //     -Drp.endpoint=${params.RP_ENDPOINT}/api/v2 ^
+                //     -Drp.api.key=${env.RP_API_KEY} ^
+                //     -Drp.project=${params.RP_PROJECT} ^
+                //     -Drp.launch=${env.LAUNCH_NAME} ^
+                //     -Drp.attributes=build:${env.BUILD_NUMBER};branch:${params.BRANCH};job:${env.JOB_NAME}
+                   
+                // """
             }
         }
+        
         
         // =========================
         // 4. Publish Test Reports
@@ -110,7 +113,7 @@ pipeline {
             echo "📊 View results: ${params.RP_ENDPOINT}/ui/#${params.RP_PROJECT}/launches/all"
         }
         failure {
-            echo "❌ Build or Tests Failed"
+            echo "❌build or Tests Failed"
             echo "🔍 Check logs above for details"
         }
     }
